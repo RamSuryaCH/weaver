@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "weaver": {
+      "command": "npx",
+      "args": ["tsx", "packages/mcp/src/main.ts"],
+      "env": {
+        "WEAVER_MODE": "replay"
+      }
+    }
+  }
+}

@@ -50,6 +50,7 @@ export async function runHeal(options: HealCommandOptions): Promise<number> {
           {
             contract,
             policy,
+            verifyMode: context.env.mode,
             ...(options.dryRun === true ? { dryRun: true } : {}),
             ...(options.attempts === undefined ? {} : { maxAttempts: options.attempts }),
             ...(options.noVerify === true ? { verify: false } : {}),

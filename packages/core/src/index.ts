@@ -73,3 +73,13 @@ export {
 } from './heal-prompt.js';
 
 export { describeVerdict, verifyPreview, type PreviewVerdict } from './preview.js';
+
+export {
+  compareByMolecule,
+  moleculeKey,
+  parsePackSize,
+  readOffer,
+  readOffers,
+  type MoleculeComparison,
+  type PharmacyOffer,
+} from './catalogue.js';

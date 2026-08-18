@@ -35,6 +35,7 @@ import {
   type HealEnvelope,
   type ScraperStudioCli,
 } from '@weaver/brightdata';
+import type { RunMode } from '@weaver/db';
 import type { EngineDeps, EngineEvent } from './collect.js';
 import { collectSource } from './collect.js';
 
@@ -60,6 +61,12 @@ export interface HealOptions {
   readonly dryRun?: boolean;
   /** Re-collect after approval to confirm the fix. Off only for tests. */
   readonly verify?: boolean;
+  /**
+   * How to re-collect for that confirmation. Follows the configured run mode, so
+   * a replay-mode demo can complete the whole loop without spending a credit
+   * while a live run verifies against the real site.
+   */
+  readonly verifyMode?: RunMode;
 }
 
 export interface HealAttempt {
@@ -291,7 +298,10 @@ export async function healSource(deps: HealDeps, options: HealOptions): Promise<
   // An approved fix still has to satisfy the contract on a real run. This is the
   // check that closes the incident, and it is the reason `--auto-approve` is not
   // enough on its own.
-  const recollected = await collectSource(deps, { contract, mode: 'live' });
+  const recollected = await collectSource(deps, {
+    contract,
+    mode: options.verifyMode ?? 'live',
+  });
   await record(
     deps,
     incident?.id,

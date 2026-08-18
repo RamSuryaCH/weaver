@@ -1,0 +1,25 @@
+{
+  "name": "@weaver/mcp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "The Weaver MCP server: drives the whole reliability loop from a coding agent, with no dashboard.",
+  "bin": {
+    "weaver-mcp": "./src/main.ts"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.22.0",
+    "@weaver/brightdata": "workspace:*",
+    "@weaver/config": "workspace:*",
+    "@weaver/core": "workspace:*",
+    "@weaver/db": "workspace:*",
+    "@weaver/engine": "workspace:*",
+    "zod": "3.25.76"
+  }
+}

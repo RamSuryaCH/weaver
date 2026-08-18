@@ -1,0 +1,45 @@
+---
+description: Weaver — self-healing web data control plane on Bright Data Scraper Studio
+alwaysApply: true
+---
+
+# Weaver
+
+Read `CONTEXT.md` for the domain vocabulary before changing code. `AGENTS.md` holds
+the working agreements.
+
+## Pinned Bright Data Collector IDs
+
+Reuse these; do not create new scrapers. Generation takes 5 to 25 minutes, and
+`bdata scraper heal` repairs a collector in place without changing its ID.
+
+- Truemeds: `<not created yet>` — `sources/truemeds.yaml`
+- Dawaa Dost: `<not created yet>` — `sources/dawaadost.yaml`
+- Apollo Pharmacy: `<not created yet>` — `sources/apollo-pharmacy.yaml`
+
+The `collector_id` in each `sources/*.yaml` is authoritative.
+
+## Use Weaver's MCP tools
+
+`weaver_list_sources`, `weaver_collect`, `weaver_diagnose`, `weaver_heal`
+(requires `confirm: true`), `weaver_compare_prices`. Registered in `.mcp.json`.
+Diagnose before healing: diagnosis is read-only and costs nothing.
+
+## Hard rules
+
+- Never pass `--auto-approve` to `bdata scraper heal`. Weaver verifies the preview
+  against the contract before approving, and that gate is the product.
+- Never relax a contract to make a finding disappear. Heal the scraper.
+- A field's `description` creates the scraper, validates every run and writes the
+  heal prompt. Change it only when the field's meaning changed.
+- Never print an API key.
+- `pnpm verify` before committing.
+
+## Commands
+
+```sh
+pnpm weaver doctor
+pnpm weaver collect --all --mode replay
+pnpm weaver check --explain
+pnpm weaver heal --source truemeds --dry-run
+```
