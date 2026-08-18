@@ -1,0 +1,89 @@
+@import 'tailwindcss';
+
+/**
+ * Weaver's design tokens.
+ *
+ * Warm monochrome, editorial. Colour is a scarce resource: it appears only to
+ * carry meaning, which here means the health of a data source. No gradients, no
+ * heavy shadows, one hairline border weight throughout.
+ *
+ * The four pastels map exactly onto the four states a source can be in, and each
+ * pairing has been chosen to clear WCAG AA for body text on its own background.
+ */
+@theme {
+  --color-canvas: #f7f6f3;
+  --color-surface: #ffffff;
+  --color-surface-sunk: #f9f9f8;
+  --color-ink: #111111;
+  --color-ink-soft: #2f3437;
+  --color-muted: #787774;
+  --color-line: #eaeaea;
+
+  /* healthy */
+  --color-state-ok-bg: #edf3ec;
+  --color-state-ok-ink: #346538;
+  /* degraded */
+  --color-state-warn-bg: #fbf3db;
+  --color-state-warn-ink: #956400;
+  /* broken */
+  --color-state-bad-bg: #fdebec;
+  --color-state-bad-ink: #9f2f2d;
+  /* healing, and anything in progress */
+  --color-state-busy-bg: #e1f3fe;
+  --color-state-busy-ink: #1f6c9f;
+
+  --font-sans:
+    'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, sans-serif;
+  --font-serif: var(--font-editorial), 'Instrument Serif', 'Newsreader', Georgia, serif;
+  --font-mono: var(--font-code), 'SF Mono', 'JetBrains Mono', ui-monospace, monospace;
+
+  --radius-card: 12px;
+  --radius-control: 6px;
+}
+
+html {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+/**
+ * Scroll-entry animation.
+ *
+ * Applied by adding `data-reveal` to an element; a small IntersectionObserver
+ * sets `data-revealed` when it enters the viewport. Only transform and opacity
+ * are animated, so nothing triggers layout. Anyone who has asked their system to
+ * reduce motion sees the finished state immediately.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 600ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: calc(var(--reveal-index, 0) * 80ms);
+  }
+
+  [data-reveal][data-revealed='true'] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* A hairline that reads as a rule rather than a border. */
+.rule {
+  border-bottom: 1px solid var(--color-line);
+}
+
+/* Tabular figures keep price columns from shifting as digits change. */
+.numeric {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}

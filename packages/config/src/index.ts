@@ -7,3 +7,4 @@ export {
 } from './sources.js';
 export { readEnv, RUN_MODES, type RunMode, type WeaverEnv } from './env.js';
 export { loadDotEnv } from './dotenv.js';
+export { findRepoRoot, resolveFromRepoRoot } from './paths.js';

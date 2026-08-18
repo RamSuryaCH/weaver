@@ -37,3 +37,4 @@ Thumbs.db
 
 # Local scratch space for agent working notes
 .scratch/
+apps/web/.next/

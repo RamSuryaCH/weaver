@@ -10,6 +10,7 @@
  * on the same schema with no manual step.
  */
 import { createHash, randomUUID } from 'node:crypto';
+import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createClient, type Client } from '@libsql/client';
 import { and, desc, eq, inArray, sql } from 'drizzle-orm';
@@ -87,7 +88,17 @@ export interface IncidentEventRecord {
   readonly detail: unknown;
 }
 
-const MIGRATIONS_DIR = fileURLToPath(new URL('../migrations', import.meta.url));
+/**
+ * Migrations live beside the source, one directory up.
+ *
+ * Built by hand from `import.meta.url` rather than with `new URL('../migrations',
+ * import.meta.url)`, because bundlers treat that form as a static asset reference
+ * and try to resolve it at build time — which fails, since a directory is not a
+ * module. An environment override exists for deployments that relocate them.
+ */
+const MIGRATIONS_DIR =
+  process.env.WEAVER_MIGRATIONS_DIR ??
+  join(dirname(fileURLToPath(import.meta.url)), '..', 'migrations');
 
 export class WeaverStore {
   private constructor(

@@ -7,6 +7,7 @@
  */
 import { z } from 'zod';
 import { HEAL_POLICIES } from '@weaver/core';
+import { resolveFromRepoRoot } from './paths.js';
 
 /**
  * `live` spends Bright Data credits by triggering real collectors.
@@ -52,7 +53,9 @@ export function readEnv(source: NodeJS.ProcessEnv = process.env): WeaverEnv {
 
   return {
     mode: parsed.WEAVER_MODE,
-    dbPath: parsed.WEAVER_DB_PATH,
+    // Resolved here so every entry point agrees on which file the database is,
+    // whatever directory it was started from.
+    dbPath: resolveFromRepoRoot(parsed.WEAVER_DB_PATH),
     healPolicy: parsed.WEAVER_HEAL_POLICY,
     escalationRepo: parsed.WEAVER_ESCALATION_REPO,
     hasApiKey: parsed.BRIGHTDATA_API_KEY !== undefined,

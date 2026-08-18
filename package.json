@@ -16,9 +16,10 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "build": "pnpm typecheck && pnpm --filter @weaver/web build",
+    "build": "pnpm typecheck && pnpm --filter @weaver/web typecheck && pnpm --filter @weaver/web build",
     "db:push": "pnpm --filter @weaver/db push",
-    "verify": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test"
+    "verify": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm --filter @weaver/web typecheck && pnpm test",
+    "dev": "pnpm --filter @weaver/web dev"
   },
   "devDependencies": {
     "@eslint/js": "9.39.1",

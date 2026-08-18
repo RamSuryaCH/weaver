@@ -6,10 +6,10 @@
  * replay mode needs no configuration at all — that is the point of it.
  */
 import { existsSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { resolveFromRepoRoot } from './paths.js';
 
 export function loadDotEnv(path = '.env'): boolean {
-  const absolute = resolve(path);
+  const absolute = resolveFromRepoRoot(path);
   if (!existsSync(absolute)) return false;
   process.loadEnvFile(absolute);
   return true;

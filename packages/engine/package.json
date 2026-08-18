@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@weaver/brightdata": "workspace:*",
+    "@weaver/config": "workspace:*",
     "@weaver/core": "workspace:*",
     "@weaver/db": "workspace:*"
   }

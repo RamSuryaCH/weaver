@@ -7,7 +7,8 @@
  * submissions to include. One file, three jobs.
  */
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { join, resolve } from 'node:path';
+import { join } from 'node:path';
+import { resolveFromRepoRoot } from '@weaver/config';
 
 export interface FixtureRecord {
   readonly sourceId: string;
@@ -32,7 +33,7 @@ export class FixtureStore {
 
   /** Write a payload, named by timestamp so history is preserved. */
   record(record: FixtureRecord): string {
-    const dir = resolve(this.root, record.sourceId);
+    const dir = join(resolveFromRepoRoot(this.root), record.sourceId);
     mkdirSync(dir, { recursive: true });
 
     const stamp = record.collectedAt.replace(/[:.]/g, '-');
@@ -56,7 +57,7 @@ export class FixtureStore {
 
   /** Every recorded run for a source, oldest first. */
   list(sourceId: string): readonly string[] {
-    const dir = resolve(this.root, sourceId);
+    const dir = join(resolveFromRepoRoot(this.root), sourceId);
     if (!existsSync(dir)) return [];
 
     return readdirSync(dir)

@@ -7,7 +7,8 @@
  * is useless when you have a typo in a config file.
  */
 import { readdirSync, readFileSync } from 'node:fs';
-import { basename, join, resolve } from 'node:path';
+import { basename, join } from 'node:path';
+import { resolveFromRepoRoot } from './paths.js';
 import { parse as parseYaml } from 'yaml';
 import { parseSourceContract, type SourceContract } from '@weaver/core';
 
@@ -34,7 +35,7 @@ export function parseContractYaml(yamlText: string, fileLabel: string): SourceCo
 
 /** Load one contract from disk. */
 export function loadSourceContract(filePath: string): SourceContract {
-  const absolute = resolve(filePath);
+  const absolute = resolveFromRepoRoot(filePath);
   return parseContractYaml(readFileSync(absolute, 'utf8'), basename(absolute));
 }
 
@@ -46,7 +47,7 @@ export function loadSourceContract(filePath: string): SourceContract {
  * the exact opposite of the point.
  */
 export function loadSourceContracts(dir: string = DEFAULT_SOURCES_DIR): readonly SourceContract[] {
-  const absoluteDir = resolve(dir);
+  const absoluteDir = resolveFromRepoRoot(dir);
   const files = readdirSync(absoluteDir)
     .filter((name) => name.endsWith('.yaml') || name.endsWith('.yml'))
     .sort();

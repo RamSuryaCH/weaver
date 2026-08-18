@@ -1,0 +1,29 @@
+{
+  "name": "@weaver/web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "The Weaver dashboard: a read-only view over the same database the CLI writes.",
+  "scripts": {
+    "dev": "next dev --port 4321",
+    "build": "next build",
+    "start": "next start --port 4321",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@weaver/config": "workspace:*",
+    "@weaver/core": "workspace:*",
+    "@weaver/db": "workspace:*",
+    "next": "15.5.4",
+    "react": "19.1.1",
+    "react-dom": "19.1.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.1.14",
+    "@types/react": "19.1.10",
+    "@types/react-dom": "19.1.7",
+    "@weaver/brightdata": "workspace:*",
+    "@weaver/engine": "workspace:*",
+    "tailwindcss": "4.1.14"
+  }
+}
