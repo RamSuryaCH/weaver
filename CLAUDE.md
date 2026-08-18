@@ -11,9 +11,9 @@ ID — generation takes 5 to 25 minutes and healing keeps the ID stable, so a ne
 scraper is almost never the right answer.
 
 ```sh
-TRUEMEDS_COLLECTOR_ID=<not created yet>
-DAWAADOST_COLLECTOR_ID=<not created yet>
-APOLLO_COLLECTOR_ID=<not created yet>
+TRUEMEDS_COLLECTOR_ID=c_msz4j3yo230n7kzhbe
+DAWAADOST_COLLECTOR_ID=c_msz4k0rsm4wpfezt3
+APOLLO_COLLECTOR_ID=c_msz4k329ghj4p6o3y
 
 # Run a pinned collector directly
 RUN_SCRAPER="bdata scraper run $TRUEMEDS_COLLECTOR_ID <url> --pretty"

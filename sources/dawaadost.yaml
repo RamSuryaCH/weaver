@@ -11,7 +11,7 @@ id: dawaadost
 name: Dawaa Dost
 type: pdp
 target_url: https://www.dawaadost.com
-collector_id: null
+collector_id: c_msz4k0rsm4wpfezt3
 
 description: >-
   From this medicine product page extract one row: product_url (canonical page

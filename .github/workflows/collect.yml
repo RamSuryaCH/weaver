@@ -1,0 +1,126 @@
+name: collect
+
+# Scrapers in CI, no humans.
+#
+# Every six hours: trigger all three collectors through the Bright Data
+# Collection API, validate each run against its contract, heal anything that
+# broke under the gated policy, and commit the recorded runs. If healing cannot
+# fix it, a GitHub issue is opened so a person inherits a described problem
+# rather than a silent gap.
+#
+# `bdata login` needs a browser, which CI does not have. BRIGHTDATA_API_KEY works
+# headless, which is why every step here reads the key from the environment.
+
+on:
+  schedule:
+    # 00:15, 06:15, 12:15 and 18:15 UTC, offset off the hour to avoid the crowd.
+    - cron: '15 0,6,12,18 * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: live spends Bright Data credits, replay does not
+        type: choice
+        options: [live, replay]
+        default: live
+      heal_policy:
+        description: what Weaver may do on its own
+        type: choice
+        options: [manual, gated, auto]
+        default: gated
+
+concurrency:
+  # Two overlapping collections would fight over the committed data.
+  group: collect
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    env:
+      BRIGHTDATA_API_KEY: ${{ secrets.BRIGHTDATA_API_KEY }}
+      WEAVER_MODE: ${{ inputs.mode || 'live' }}
+      WEAVER_HEAL_POLICY: ${{ inputs.heal_policy || 'gated' }}
+      WEAVER_ESCALATION_REPO: ${{ github.repository }}
+      # `gh` is pre-installed on the runner; the escalation path shells out to it.
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.2
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: check the environment before spending anything
+        run: pnpm weaver doctor
+
+      - name: collect every source
+        id: collect
+        # A non-zero exit means at least one source is unhealthy, which is a
+        # finding rather than a workflow failure — the next step is what responds
+        # to it. `continue-on-error` keeps the run going so healing can happen.
+        continue-on-error: true
+        run: pnpm weaver collect --all --explain
+
+      - name: heal whatever broke
+        if: steps.collect.outcome == 'failure'
+        continue-on-error: true
+        # Under the gated policy this synthesizes a prompt, verifies the returned
+        # preview against the same contract that detected the break, and approves
+        # only if it passes. Nothing here can approve a fix blindly.
+        run: pnpm weaver heal --all
+
+      - name: report the state after healing
+        id: recheck
+        continue-on-error: true
+        run: pnpm weaver check --explain
+
+      - name: commit the recorded runs
+        run: |
+          git config user.name "weaver[bot]"
+          git config user.email "weaver@users.noreply.github.com"
+
+          # Only the recorded payloads are committed. The database is derived and
+          # stays out of git, so history shows what the web returned, not
+          # generated state.
+          git add fixtures/
+          if git diff --cached --quiet; then
+            echo "no new data to commit"
+          else
+            git commit -m "data: collected $(date -u +%Y-%m-%dT%H:%MZ)
+
+          Automated collection through the Bright Data Collection API.
+          Verdict after healing: ${{ steps.recheck.outcome }}."
+            git push
+          fi
+
+      - name: upload the run report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: weaver-report-${{ github.run_number }}
+          path: |
+            fixtures/**/*.json
+          retention-days: 14
+          if-no-files-found: warn
+
+      - name: fail the run if a source is still unhealthy
+        # Deliberately last: the data is committed and the artifact uploaded
+        # first, so a red check never costs us the evidence of why.
+        if: steps.recheck.outcome == 'failure'
+        run: |
+          echo "::warning::At least one source still violates its contract after healing."
+          exit 1

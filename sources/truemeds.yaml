@@ -11,7 +11,7 @@ id: truemeds
 name: Truemeds
 type: pdp
 target_url: https://www.truemeds.in
-collector_id: null
+collector_id: c_msz4j3yo230n7kzhbe
 
 # Handed verbatim to `bdata scraper create`. Capped at 500 characters by the CLI.
 description: >-

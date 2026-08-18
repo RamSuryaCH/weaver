@@ -7,9 +7,9 @@ agreements before changing code.
 ## Pinned Bright Data Collector IDs
 
 ```sh
-SCRAPER_STUDIO_COLLECTOR_ID=<not created yet>          # Truemeds
-DAWAADOST_COLLECTOR_ID=<not created yet>
-APOLLO_COLLECTOR_ID=<not created yet>
+SCRAPER_STUDIO_COLLECTOR_ID=c_msz4j3yo230n7kzhbe          # Truemeds
+DAWAADOST_COLLECTOR_ID=c_msz4k0rsm4wpfezt3
+APOLLO_COLLECTOR_ID=c_msz4k329ghj4p6o3y
 
 TRUEMEDS_SCRAPER_USAGE="bdata scraper run $SCRAPER_STUDIO_COLLECTOR_ID <url> --pretty"
 ```

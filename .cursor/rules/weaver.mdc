@@ -13,9 +13,9 @@ the working agreements.
 Reuse these; do not create new scrapers. Generation takes 5 to 25 minutes, and
 `bdata scraper heal` repairs a collector in place without changing its ID.
 
-- Truemeds: `<not created yet>` — `sources/truemeds.yaml`
-- Dawaa Dost: `<not created yet>` — `sources/dawaadost.yaml`
-- Apollo Pharmacy: `<not created yet>` — `sources/apollo-pharmacy.yaml`
+- Truemeds: `c_msz4j3yo230n7kzhbe` — `sources/truemeds.yaml`
+- Dawaa Dost: `c_msz4k0rsm4wpfezt3` — `sources/dawaadost.yaml`
+- Apollo Pharmacy: `c_msz4k329ghj4p6o3y` — `sources/apollo-pharmacy.yaml`
 
 The `collector_id` in each `sources/*.yaml` is authoritative.
 
