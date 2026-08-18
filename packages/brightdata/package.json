@@ -1,0 +1,16 @@
+{
+  "name": "@weaver/brightdata",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Typed client for the Bright Data Scraper Studio Collection API and the bdata CLI. Every response is parsed with zod.",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "zod": "4.1.13"
+  }
+}

@@ -20,3 +20,45 @@ export {
   type SourcePolicy,
   type ValidationRules,
 } from './contract.js';
+
+export {
+  buildBaseline,
+  detectDrift,
+  findingsFor,
+  MIN_BASELINE_RUNS,
+  type Baseline,
+  type BaselineField,
+  type DetectDriftInput,
+  type RunReport,
+} from './drift.js';
+
+export {
+  FINDING_CODES,
+  isAtLeast,
+  isHealable,
+  SEVERITIES,
+  worstSeverity,
+  type Finding,
+  type FindingCode,
+  type Severity,
+} from './findings.js';
+
+export {
+  computeRunStatistics,
+  median,
+  percentChange,
+  readFieldValue,
+  type FieldStatistics,
+  type FieldValue,
+  type NumericSummary,
+  type RunStatistics,
+} from './statistics.js';
+
+export {
+  applyChaos,
+  ChaosConfigurationError,
+  CHAOS_MUTATIONS,
+  describeMutation,
+  type ChaosMutation,
+  type ChaosOptions,
+} from './chaos.js';

@@ -1,0 +1,22 @@
+{
+  "name": "@weaver/db",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "SQLite persistence for runs, rows, field statistics, findings and incidents.",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "push": "drizzle-kit push"
+  },
+  "dependencies": {
+    "@libsql/client": "0.15.15",
+    "@weaver/core": "workspace:*",
+    "drizzle-orm": "0.44.6"
+  },
+  "devDependencies": {
+    "drizzle-kit": "0.31.5"
+  }
+}
