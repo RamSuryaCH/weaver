@@ -296,6 +296,44 @@ describe('healSource', () => {
       expect(outcome.attempts[1]?.verdict).toBe('approved');
     });
 
+    it('carries on when the reject call itself fails upstream', async () => {
+      // Observed against the live API: `approve --reject` can answer 500 with
+      // `sprintf invalid format %j` while still reporting the scraper unchanged.
+      // Rejection exists to leave the collector alone, and that already happened,
+      // so the repair must not be abandoned over it.
+      await breakSource();
+      const calls: string[][] = [];
+      const script = [
+        healEnvelope(healthyRows(5).map((row) => ({ ...row, mrp: null }))),
+        'BOOM',
+        healEnvelope(healthyRows(5)),
+        approveEnvelope(),
+      ];
+      const run: CommandRunner = (args) => {
+        calls.push([...args]);
+        const stdout = script.shift();
+        if (stdout === 'BOOM') {
+          return Promise.resolve({
+            stdout: '',
+            stderr: 'Error: sprintf invalid format %j (ide_automation)',
+            exitCode: 1,
+          });
+        }
+        return Promise.resolve({ stdout: stdout ?? '{}', stderr: '', exitCode: 0 });
+      };
+
+      const outcome = await healSource(
+        { store, fixtures, now: () => clock, cli: new ScraperStudioCli({ run }) },
+        { contract: contract(), policy: 'gated', verify: false },
+      );
+
+      expect(outcome.attempts.map((attempt) => attempt.verdict)).toEqual(['rejected', 'approved']);
+
+      const timeline = await store.incidentTimeline(outcome.incidentId!);
+      const rejection = timeline.find((event) => event.kind === 'rejected');
+      expect(rejection?.message).toContain('never modified');
+    });
+
     it('escalates once the attempt budget is exhausted', async () => {
       await breakSource();
       const stillBroken = healthyRows(5).map((row) => ({ ...row, mrp: null }));

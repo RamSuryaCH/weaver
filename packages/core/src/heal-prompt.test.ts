@@ -224,7 +224,7 @@ describe('the prompt a judge will read on screen', () => {
     );
 
     expect(prompt.text).toMatchInlineSnapshot(
-      `""selling_price" is the same value in all 12 rows, which suggests extraction latched onto a fixed element. "selling_price" is the price in rupees a customer actually pays today, after any discount. A previous fix was rejected because the preview returned the same price for every product. Observed: "selling_price" came back as 100. Prefer the values in the embedded JSON-LD structured data on the page (schema.org Product or Offer) over CSS class names, which change often. Re-capture "selling_price" from the current markup and leave every other field untouched. Return "selling_price" as a plain number with no currency symbol."`,
+      `""selling_price" is the same value in all 12 rows, which suggests extraction latched onto a fixed element. "selling_price" is the price in rupees a customer actually pays today, after any discount. A previous fix was rejected because the preview returned the same price for every product. Observed: "selling_price" came back as 100. The page embeds these values in JSON as well as in visible markup: schema.org JSON-LD (Product, Offer or Drug) and a framework hydration payload with keys such as "composition" and "skuPackaging". Prefer those over CSS class names, which change often. Re-capture "selling_price" from the current markup and leave every other field untouched. Return "selling_price" as a plain number with no currency symbol."`,
     );
   });
 });

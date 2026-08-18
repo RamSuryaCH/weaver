@@ -51,10 +51,25 @@ export function createGithubEscalation(
 
 export function renderIssueBody(input: EscalationInput): string {
   const lines: string[] = [];
+  const approved = input.attempts.filter((attempt) => attempt.verdict === 'approved');
 
   lines.push(`Weaver detected a contract violation on **${input.contract.name}** and could not`);
-  lines.push('repair it within its heal budget. The collector is unchanged: every rejected fix');
-  lines.push('was rolled back with `bdata scraper approve --reject`.');
+  lines.push('repair it within its heal budget.');
+  lines.push('');
+
+  // These two paths leave the collector in different states, and saying the wrong
+  // one would send whoever picks this up looking in the wrong place.
+  if (approved.length === 0) {
+    lines.push('**The collector is unchanged.** Every proposed fix failed the contract at the');
+    lines.push('approval gate and was rolled back with `bdata scraper approve --reject`.');
+  } else {
+    lines.push('**The collector was changed and the change did not work.** A proposed fix');
+    lines.push('satisfied the contract on its preview, so it was approved — but the real run');
+    lines.push('afterwards still violates the contract. A preview is a sample, and this one was');
+    lines.push('not representative. Consider rolling back from the Versions menu in Scraper');
+    lines.push('Studio if the new version is worse than the old one.');
+  }
+
   lines.push('');
   lines.push(`- Source: \`${input.contract.id}\``);
   lines.push(`- Collector: \`${input.contract.collectorId ?? 'none'}\``);

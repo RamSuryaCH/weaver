@@ -250,15 +250,7 @@ export async function healSource(deps: HealDeps, options: HealOptions): Promise<
     log(event('preview_rejected', contract.id, reason));
     await record(deps, incident?.id, 'preview_rejected', reason, verdict);
 
-    const rejected = await deps.cli.approve({ collectorId, reject: true });
-    assertSameCollector(collectorId, rejected);
-    await record(
-      deps,
-      incident?.id,
-      'rejected',
-      'proposed fix rejected, collector unchanged',
-      rejected,
-    );
+    await rejectQuietly(deps, incident?.id, collectorId);
 
     attempts.push({
       attempt,
@@ -328,6 +320,48 @@ export async function healSource(deps: HealDeps, options: HealOptions): Promise<
     prompt: undefined,
     escalationUrl,
   };
+}
+
+/**
+ * Reject a proposed fix, and do not let the rejection itself derail the loop.
+ *
+ * Rejection exists to leave the collector alone. Observed against the live API,
+ * `bdata scraper approve --reject` can answer 500 with
+ * `sprintf invalid format %j` — a fault inside Bright Data's own job resumption —
+ * while still reporting that the scraper is unchanged and still works.
+ *
+ * That outcome is what a rejection is for, so treating the error as fatal would
+ * abandon the repair over a cosmetic upstream failure. Weaver records what
+ * happened as incident evidence and moves on to the sharpened prompt. The
+ * collector is not modified either way: only `approve` commits a change, and
+ * approve is never called on a preview that failed the contract.
+ */
+async function rejectQuietly(
+  deps: HealDeps,
+  incidentId: string | undefined,
+  collectorId: string,
+): Promise<void> {
+  try {
+    const rejected = await deps.cli.approve({ collectorId, reject: true });
+    assertSameCollector(collectorId, rejected);
+    await record(
+      deps,
+      incidentId,
+      'rejected',
+      'proposed fix rejected, collector unchanged',
+      rejected,
+    );
+  } catch (error) {
+    if (error instanceof CollectorIdChangedError) throw error;
+
+    await record(
+      deps,
+      incidentId,
+      'rejected',
+      'reject call failed upstream; the collector was never modified, so it is unchanged',
+      { error: error instanceof Error ? error.message : String(error) },
+    );
+  }
 }
 
 /**

@@ -197,15 +197,24 @@ function exampleSection(input: AssembleInput): string {
 /**
  * Where to look on the page.
  *
- * All three pharmacy sources publish schema.org product data, which is far more
- * stable than their class names — so pointing the refactorer at it is both a
- * better repair and a more durable one.
+ * All three pharmacy sources publish the values twice: once in visible markup,
+ * and once in an embedded JSON payload — schema.org JSON-LD on some pages, a
+ * framework hydration blob on others. Those payloads are far more stable than
+ * class names, so pointing the refactorer at them is both a better repair and a
+ * more durable one.
+ *
+ * The wording is deliberately broader than "JSON-LD". Observed on Dawaa Dost:
+ * `composition` is absent from the JSON-LD but present as `"composition":
+ * "Rosuvastatin (10mg)"` in the hydration payload, so naming only JSON-LD sent
+ * the refactorer to the wrong half of the page.
  */
 function markupHintSection(input: AssembleInput): string {
   if (input.strategy === 'describe-all') return '';
   return (
-    'Prefer the values in the embedded JSON-LD structured data on the page ' +
-    '(schema.org Product or Offer) over CSS class names, which change often.'
+    'The page embeds these values in JSON as well as in visible markup: ' +
+    'schema.org JSON-LD (Product, Offer or Drug) and a framework hydration ' +
+    'payload with keys such as "composition" and "skuPackaging". Prefer those ' +
+    'over CSS class names, which change often.'
   );
 }
 

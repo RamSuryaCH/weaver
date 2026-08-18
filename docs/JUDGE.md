@@ -104,7 +104,7 @@ unit.
 | ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Potential impact**           | `/prices` — same molecule, three pharmacies, per-unit prices. Wrong medicine prices have consequences, which is why the contract has range rules at all.                               |
 | **Creativity / innovation**    | Two ideas: one plain-language description used to create, validate **and** repair a field; and verify-then-approve, where a heal is trusted because the output satisfies the contract. |
-| **Technical excellence**       | `pnpm verify` — format, lint, typecheck (including the dashboard) and 258 tests. `any` is a lint error. Every boundary is parsed with zod. Four ADRs in `docs/adr/`.                   |
+| **Technical excellence**       | `pnpm verify` — format, lint, typecheck (including the dashboard) and 263 tests. `any` is a lint error. Every boundary is parsed with zod. Four ADRs in `docs/adr/`.                   |
 | **Use of Scraper Studio**      | Three real `c_*` collectors, created and healed through the CLI, triggered through `POST /dca/trigger`. Nothing in this project works without them.                                    |
 | **Reliability / self-healing** | `packages/engine/src/heal.ts` and its 13 tests; the chaos harness's 8 mutations, each with a test proving it triggers the finding it simulates; the incident timeline.                 |
 | **Presentation**               | The dashboard, the demo video, and `weaver` itself — the terminal output is designed, not debug spew.                                                                                  |
