@@ -1,0 +1,120 @@
+# Dawaa Dost — product detail pages (PDP)
+#
+# Long-tail justification: Dawaa Dost is a generic-focused Indian pharmacy whose
+# whole pitch is lower prices on the same molecules. It is not in Bright Data's
+# pre-built library, and it is the source that makes the brand-versus-generic
+# savings comparison possible.
+#
+# Legality: robots.txt is `allow: /` apart from cart, temp and staging hosts.
+# Product pages return HTTP 200 with no session. No personal data is collected.
+id: dawaadost
+name: Dawaa Dost
+type: pdp
+target_url: https://www.dawaadost.com
+collector_id: null
+
+description: >-
+  From this medicine product page extract one row: product_url (canonical page
+  URL), product_name, composition (active ingredients), mrp (printed maximum
+  retail price in INR before discount), selling_price (price payable now in
+  INR), currency (ISO code), discount_pct (advertised discount percentage),
+  in_stock (true when orderable). Prefer the page's embedded structured data.
+  Return prices as plain numbers with no currency symbol.
+
+row_key:
+  - product_url
+
+expectations:
+  min_rows: 10
+  max_row_drop_pct: 30
+
+policy:
+  heal: gated
+  max_heal_attempts: 3
+
+schema:
+  - field: product_url
+    description: the canonical URL of this medicine's product page
+    type: url
+    required: true
+    min_fill_rate: 1.0
+
+  - field: product_name
+    description: the brand name of the medicine as printed on the product page
+    type: string
+    required: true
+    validate:
+      min_length: 3
+
+  - field: composition
+    description: >-
+      the active ingredients (salts) of the medicine with their strengths,
+      exactly as listed on the page
+    type: string
+    required: true
+    min_fill_rate: 0.8
+
+  - field: mrp
+    description: >-
+      the printed maximum retail price in rupees, before any discount is applied
+    type: number
+    required: true
+    unit: INR
+    validate:
+      gt: 0
+      lt: 100000
+    drift:
+      median_shift_pct: 30
+      flag_constant: true
+
+  - field: selling_price
+    description: >-
+      the discounted price in rupees a customer actually pays today
+    type: number
+    required: true
+    unit: INR
+    validate:
+      gt: 0
+      lt: 100000
+    drift:
+      median_shift_pct: 30
+      flag_constant: true
+
+  - field: currency
+    description: the ISO 4217 currency code the prices are quoted in
+    type: string
+    required: true
+    validate:
+      one_of:
+        - INR
+
+  - field: discount_pct
+    description: >-
+      the advertised discount percentage off MRP, when the page shows one
+    type: number
+    validate:
+      gte: 0
+      lte: 100
+
+  - field: in_stock
+    description: >-
+      true when the product can be ordered, false when it is out of stock
+    type: boolean
+
+inputs:
+  urls:
+    - https://www.dawaadost.com/medicine/pan-40mg-tablet-15s
+    - https://www.dawaadost.com/medicine/pantop-40mg-tablet-15s
+    - https://www.dawaadost.com/medicine/glycomet-500mg-tablet-10s
+    - https://www.dawaadost.com/medicine/allegra-120mg-tablet-10s
+    - https://www.dawaadost.com/medicine/zerodol-sp-tablet-10s
+    - https://www.dawaadost.com/medicine/rosuvas-10mg-tablet-15s
+    - https://www.dawaadost.com/medicine/met-xl-25mg-tablet-er-20s
+    - https://www.dawaadost.com/medicine/thyronorm-25mcg-tablet-120s
+    - https://www.dawaadost.com/medicine/ecosprin-150mg-tablet-14s
+    - https://www.dawaadost.com/medicine/montek-lc-10mg5mg-tablet-15s
+    - https://www.dawaadost.com/medicine/dolo-650mg-tablet-15s
+    - https://www.dawaadost.com/medicine/crocin-650-tablet-15s
+    - https://www.dawaadost.com/medicine/shelcal-500-tablet-15s
+    - https://www.dawaadost.com/medicine/zincovit-tablet-15s
+    - https://www.dawaadost.com/medicine/augmentin-625-duo-tablet-10s

@@ -1,0 +1,121 @@
+# Apollo Pharmacy — product detail pages (PDP)
+#
+# Long-tail justification: India's largest pharmacy chain by store count, and
+# still absent from Bright Data's pre-built scraper library, which covers global
+# marketplaces rather than regional pharmacy catalogues. It is the branded-price
+# anchor the other two sources are compared against.
+#
+# Legality: robots.txt is `Allow: /` with /search/, /medicine/search-medicines/,
+# cart and account paths disallowed — none of which appear below. Product pages
+# return HTTP 200 with no session. No personal data is collected.
+id: apollo-pharmacy
+name: Apollo Pharmacy
+type: pdp
+target_url: https://www.apollopharmacy.in
+collector_id: null
+
+description: >-
+  From this medicine product page extract one row: product_url (canonical page
+  URL), product_name, composition (active ingredients), mrp (printed maximum
+  retail price in INR before discount), selling_price (price payable now in
+  INR), currency (ISO code), discount_pct (advertised discount percentage),
+  in_stock (true when orderable). Prefer the page's embedded structured data.
+  Return prices as plain numbers with no currency symbol.
+
+row_key:
+  - product_url
+
+expectations:
+  min_rows: 10
+  max_row_drop_pct: 30
+
+policy:
+  heal: gated
+  max_heal_attempts: 3
+
+schema:
+  - field: product_url
+    description: the canonical URL of this medicine's product page
+    type: url
+    required: true
+    min_fill_rate: 1.0
+
+  - field: product_name
+    description: the brand name of the medicine as printed on the product page
+    type: string
+    required: true
+    validate:
+      min_length: 3
+
+  - field: composition
+    description: >-
+      the active ingredients (salts) of the medicine as shown in the
+      composition section of the page
+    type: string
+    required: true
+    min_fill_rate: 0.8
+
+  - field: mrp
+    description: >-
+      the printed maximum retail price in rupees, before any discount is applied
+    type: number
+    required: true
+    unit: INR
+    validate:
+      gt: 0
+      lt: 100000
+    drift:
+      median_shift_pct: 30
+      flag_constant: true
+
+  - field: selling_price
+    description: >-
+      the price in rupees a customer actually pays today, after any discount
+    type: number
+    required: true
+    unit: INR
+    validate:
+      gt: 0
+      lt: 100000
+    drift:
+      median_shift_pct: 30
+      flag_constant: true
+
+  - field: currency
+    description: the ISO 4217 currency code the prices are quoted in
+    type: string
+    required: true
+    validate:
+      one_of:
+        - INR
+
+  - field: discount_pct
+    description: >-
+      the advertised discount percentage off MRP, when the page shows one
+    type: number
+    validate:
+      gte: 0
+      lte: 100
+
+  - field: in_stock
+    description: >-
+      true when the product can be ordered, false when it is out of stock
+    type: boolean
+
+inputs:
+  urls:
+    - https://www.apollopharmacy.in/medicine/pan-40mg-tablet
+    - https://www.apollopharmacy.in/medicine/pantop-40mg-tablet
+    - https://www.apollopharmacy.in/medicine/glycomet-500mg-tablet
+    - https://www.apollopharmacy.in/medicine/allegra-120mg-tablet
+    - https://www.apollopharmacy.in/medicine/zerodol-sp-tablet
+    - https://www.apollopharmacy.in/medicine/rosuvas-10mg-tablet
+    - https://www.apollopharmacy.in/medicine/met-xl-25mg-er-tablet-20-s
+    - https://www.apollopharmacy.in/medicine/thyronorm-25mcg-tablet
+    - https://www.apollopharmacy.in/medicine/ecosprin-150mg-tablet
+    - https://www.apollopharmacy.in/medicine/montek-lc-tablet-15-s
+    - https://www.apollopharmacy.in/medicine/cetzine-10mg-tablet
+    - https://www.apollopharmacy.in/medicine/sinarest-tablet
+    - https://www.apollopharmacy.in/medicine/combiflam-tablet
+    - https://www.apollopharmacy.in/medicine/omez-20mg-capsule
+    - https://www.apollopharmacy.in/medicine/augmentin-375mg-tablet

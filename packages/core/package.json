@@ -1,0 +1,17 @@
+{
+  "name": "@weaver/core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Weaver's pure domain: source contracts, drift detection, heal prompt synthesis and heal policy. No I/O.",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "yaml": "2.8.1",
+    "zod": "4.1.13"
+  }
+}

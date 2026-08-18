@@ -1,0 +1,18 @@
+{
+  "name": "@weaver/cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "The weaver command line: collect, check, heal, chaos, doctor.",
+  "bin": {
+    "weaver": "./src/main.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@weaver/config": "workspace:*",
+    "@weaver/core": "workspace:*",
+    "commander": "14.0.1"
+  }
+}
