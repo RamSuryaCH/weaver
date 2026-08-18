@@ -10,6 +10,7 @@ import { Command, InvalidArgumentError } from 'commander';
 import { loadDotEnv } from '@weaver/config';
 import { CHAOS_MUTATIONS, describeMutation, type ChaosMutation } from '@weaver/core';
 import { runCheck, runCollect } from './commands/collect.js';
+import { runDemo } from './commands/demo.js';
 import { runDoctor } from './commands/doctor.js';
 import { runHeal } from './commands/heal.js';
 import { style } from './ui.js';
@@ -86,6 +87,18 @@ program
       ...(options.dryRun === true ? { dryRun: true } : {}),
       ...(typeof options.attempts === 'number' ? { attempts: options.attempts } : {}),
       ...(options.verify === false ? { noVerify: true } : {}),
+    });
+  });
+
+program
+  .command('demo')
+  .description('replay every recorded run, then break one source, so the dashboard has a story')
+  .option('--clean-only', 'replay without breaking anything')
+  .action(async (options: Record<string, unknown>) => {
+    process.exitCode = await runDemo({
+      sourcesDir: globals().sourcesDir,
+      fixturesDir: globals().fixturesDir,
+      ...(options.cleanOnly === true ? { cleanOnly: true } : {}),
     });
   });
 

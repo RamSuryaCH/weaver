@@ -1,0 +1,56 @@
+# Dawaa Dost — Sitemap
+#
+# A third Scraper Studio scraper type, and the cheapest way to enumerate a
+# catalogue: read the sitemap the site already publishes for search engines,
+# instead of crawling category pages.
+#
+# Dawaa Dost publishes eleven sitemaps covering roughly 181,000 product URLs.
+# This contract reads one of them, which is enough to prove the type works and to
+# keep the credit cost of a run measured in cents.
+#
+# Legality: sitemaps exist to be read by machines and are advertised in
+# robots.txt, which for dawaadost.com is `allow: /` apart from cgi-bin, temp and
+# the dev and staging hosts. Nothing here touches a disallowed path.
+id: dawaadost-sitemap
+name: Dawaa Dost (sitemap)
+type: sitemap
+target_url: https://www.dawaadost.com
+collector_id: c_msz6cyqz8au5eg07j
+
+description: >-
+  This is an XML sitemap. For each <url> entry that points at a medicine product
+  page, extract one row: product_url (the value of <loc>) and last_modified (the
+  value of <lastmod>, when present). Skip entries that are not product pages, and
+  skip language-prefixed duplicates such as /hi/ or /ta/. Return one row per
+  product URL.
+
+row_key:
+  - product_url
+
+expectations:
+  # One sitemap input yields thousands of rows, so the floor is about proving the
+  # parse worked rather than bounding the catalogue.
+  min_rows: 50
+  max_row_drop_pct: 60
+
+policy:
+  heal: gated
+  max_heal_attempts: 3
+
+schema:
+  - field: product_url
+    description: >-
+      the medicine product page URL taken from the <loc> element of a sitemap entry
+    type: url
+    required: true
+    min_fill_rate: 1.0
+
+  - field: last_modified
+    description: >-
+      the date this product page last changed, from the <lastmod> element, when the
+      sitemap provides one
+    type: string
+
+inputs:
+  sitemaps:
+    - https://www.dawaadost.com/sitemap2.xml

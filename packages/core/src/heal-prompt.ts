@@ -132,6 +132,7 @@ function assemble(input: AssembleInput): string {
   const essential = [symptomSection(input.findings), descriptionSection(input)];
   const optional = [
     input.previousFailure === undefined ? null : previousFailureSection(input.previousFailure),
+    nestingSection(input),
     exampleSection(input),
     markupHintSection(input),
     instructionSection(input),
@@ -147,6 +148,34 @@ function assemble(input: AssembleInput): string {
 
   // Even the essential sections are too long: keep the symptom alone.
   return essential[0]?.slice(0, HEAL_PROMPT_MAX_CHARS) ?? '';
+}
+
+/**
+ * The shape mismatch, named explicitly.
+ *
+ * Observed on the first live run of the Truemeds discovery collector: every
+ * contract field read as absent, and the payload carried a single unexpected key
+ * `products` holding an array of exactly the right objects. The extraction was
+ * correct and the shape was wrong — one row per page instead of one row per
+ * product.
+ *
+ * Without this section the prompt would have said "product_url is missing from all
+ * 3 rows", which is true and useless, because the values are right there one level
+ * down. Naming the unexpected key turns an unactionable symptom into an
+ * instruction.
+ */
+function nestingSection(input: AssembleInput): string {
+  const absent = input.findings.some((finding) => finding.code === 'field_absent');
+  const [unexpected] = input.statistics.unknownKeys;
+
+  if (!absent || unexpected === undefined) return '';
+
+  return (
+    `Every row carries an unexpected "${unexpected}" key while the contract fields ` +
+    `read as missing, which means the values are nested inside "${unexpected}" ` +
+    'rather than at the top level. Flatten it: return one row per item with the ' +
+    'contract fields at the top level, and scalar values rather than objects.'
+  );
 }
 
 function symptomSection(findings: readonly Finding[]): string {

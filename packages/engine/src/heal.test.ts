@@ -223,6 +223,32 @@ describe('healSource', () => {
       expect(calls[1]).not.toContain('--reject');
     });
 
+    it('completes the repair even when recording the evidence fails', async () => {
+      // The expensive work happens inside Bright Data and exists whether or not
+      // Weaver manages to write a row about it. Losing a five-to-fifteen minute
+      // refactor to a failed insert would be the wrong trade.
+      await breakSource();
+      const { cli } = scriptedCli([healEnvelope(healthyRows(3)), approveEnvelope()]);
+
+      const brokenStore = {
+        ...store,
+        appendIncidentEvent: () => Promise.reject(new Error('FOREIGN KEY constraint failed')),
+        latestRun: store.latestRun.bind(store),
+        findingsForRun: store.findingsForRun.bind(store),
+        rawPayload: store.rawPayload.bind(store),
+        openIncidentFor: store.openIncidentFor.bind(store),
+        setIncidentStatus: store.setIncidentStatus.bind(store),
+      } as unknown as WeaverStore;
+
+      const outcome = await healSource(
+        { store: brokenStore, fixtures, now: () => clock, cli },
+        { contract: contract(), policy: 'gated', verify: false },
+      );
+
+      expect(outcome.attempts).toHaveLength(1);
+      expect(outcome.attempts[0]?.verdict).toBe('approved');
+    });
+
     it('stores the prompt and the preview as incident evidence', async () => {
       await breakSource();
       const { cli } = scriptedCli([healEnvelope(healthyRows(3)), approveEnvelope()]);

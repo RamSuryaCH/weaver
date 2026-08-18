@@ -216,6 +216,54 @@ describe('prompt sharpening', () => {
   });
 });
 
+describe('a shape mismatch rather than a missing value', () => {
+  it('names the unexpected key the values are nested under', () => {
+    // The real first run of the Truemeds discovery collector: extraction was
+    // correct, but every product sat inside a "products" array, one row per page.
+    // "product_url is missing from all 3 rows" is true and useless on its own.
+    const nested = [
+      {
+        products: [
+          {
+            product_url: 'https://www.truemeds.in/medicine/a',
+            product_name: 'Pan 40',
+            selling_price: 34.46,
+          },
+        ],
+      },
+      {
+        products: [
+          {
+            product_url: 'https://www.truemeds.in/medicine/b',
+            product_name: 'Pantop 40',
+            selling_price: 31.76,
+          },
+        ],
+      },
+    ];
+
+    const prompt = promptFor(nested);
+
+    expect(prompt.text).toContain('unexpected "products" key');
+    expect(prompt.text).toContain('nested inside "products"');
+    expect(prompt.text).toContain('one row per item');
+  });
+
+  it('says nothing about nesting when there is no unexpected key', () => {
+    const prompt = promptFor(applyChaos(healthyRows(), { mutation: 'null-field', field: 'mrp' }));
+
+    expect(prompt.text).not.toContain('nested inside');
+  });
+
+  it('says nothing about nesting when the fields are present', () => {
+    const withExtra = healthyRows().map((row) => ({ ...row, products: [] }));
+
+    // An unknown key on its own is reported as a finding but is not a shape
+    // mismatch, so the prompt must not invent one.
+    expect(() => promptFor(withExtra)).toThrow(NothingToHealError);
+  });
+});
+
 describe('the prompt a judge will read on screen', () => {
   it('reads as an instruction a human would write', () => {
     const prompt = promptFor(

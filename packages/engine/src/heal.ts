@@ -402,6 +402,19 @@ async function escalate(
   return await deps.escalate({ contract, incidentId, attempts, findings });
 }
 
+/**
+ * Append an incident event, and never let bookkeeping destroy the repair.
+ *
+ * The heal loop's expensive work happens inside Bright Data: a five-to-fifteen
+ * minute AI refactor whose result exists whether or not Weaver manages to write a
+ * row about it. Letting an insert failure propagate would throw that away — which
+ * is exactly what happened in development when the database was recreated while a
+ * heal was in flight and the incident's foreign key vanished underneath it.
+ *
+ * So evidence is best-effort and the loop is not. The failure is reported on
+ * stderr rather than swallowed silently, because a store that cannot write is a
+ * real problem, just not one worth losing a repair over.
+ */
 async function record(
   deps: HealDeps,
   incidentId: string | undefined,
@@ -410,13 +423,24 @@ async function record(
   detail?: unknown,
 ): Promise<void> {
   if (incidentId === undefined) return;
-  await deps.store.appendIncidentEvent({
-    incidentId,
-    kind,
-    message,
-    detail,
-    at: deps.now().toISOString(),
-  });
+
+  try {
+    await deps.store.appendIncidentEvent({
+      incidentId,
+      kind,
+      message,
+      detail,
+      at: deps.now().toISOString(),
+    });
+  } catch (error) {
+    (deps.log ?? (() => undefined))(
+      event(
+        'heal_requested',
+        incidentId,
+        `could not record "${kind}" evidence: ${error instanceof Error ? error.message : String(error)}`,
+      ),
+    );
+  }
 }
 
 /**

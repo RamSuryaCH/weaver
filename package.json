@@ -19,7 +19,8 @@
     "build": "pnpm typecheck && pnpm --filter @weaver/web typecheck && pnpm --filter @weaver/web build",
     "db:push": "pnpm --filter @weaver/db push",
     "verify": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm --filter @weaver/web typecheck && pnpm test",
-    "dev": "pnpm --filter @weaver/web dev"
+    "dev": "pnpm --filter @weaver/web dev",
+    "demo": "pnpm db:push >/dev/null 2>&1 || true; tsx apps/cli/src/main.ts demo"
   },
   "devDependencies": {
     "@eslint/js": "9.39.1",

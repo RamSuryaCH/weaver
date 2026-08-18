@@ -88,11 +88,24 @@ describe('the contracts committed in sources/', () => {
   );
 
   it.each(contracts.map((contract) => [contract.id, contract] as const))(
-    '%s expects fewer rows than it supplies inputs',
+    '%s expects a row count consistent with its scraper type',
     (_id, contract) => {
-      const inputCount = (contract.inputs.urls ?? []).length;
+      const inputCount =
+        (contract.inputs.urls ?? []).length +
+        (contract.inputs.keywords ?? []).length +
+        (contract.inputs.sitemaps ?? []).length;
 
-      expect(contract.expectations.minRows).toBeLessThanOrEqual(inputCount);
+      expect(inputCount).toBeGreaterThan(0);
+
+      if (contract.type === 'pdp') {
+        // A product page collector is one-to-one: each input URL yields one row,
+        // so expecting more rows than inputs would be unsatisfiable.
+        expect(contract.expectations.minRows).toBeLessThanOrEqual(inputCount);
+      } else {
+        // Discovery, sitemap and search are one-to-many: a single listing page or
+        // sitemap yields a row per product found on it.
+        expect(contract.expectations.minRows).toBeGreaterThan(0);
+      }
     },
   );
 });

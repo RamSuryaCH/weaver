@@ -1,0 +1,74 @@
+# Truemeds — Discovery
+#
+# A different Scraper Studio scraper type against the same site: instead of one
+# product page at a time, this reads a molecule listing page and returns every
+# brand that sells that molecule.
+#
+# It is what makes the price comparison self-feeding. `/drug-salts/pantoprazole-72`
+# lists every pantoprazole brand Truemeds stocks, so Discovery finds the product
+# URLs and the PDP collector then prices them — without anyone maintaining a list
+# of URLs by hand.
+#
+# Legality: `/drug-salts/` is a public content page, server-rendered, and is not
+# among the paths truemeds.in disallows (which are /search, /cart, /login and
+# account paths). Verified 2026-08-18.
+id: truemeds-discovery
+name: Truemeds (discovery)
+type: discovery
+target_url: https://www.truemeds.in
+collector_id: c_msz6cw2l2bmrq68lqf
+
+description: >-
+  This page lists every medicine containing one drug salt. For each product card
+  in the list extract one row: product_url (link to the product page),
+  product_name (brand name on the card), selling_price (the price in rupees shown
+  on the card, as a plain number with no currency symbol). Skip cards with no
+  price. Return one row per product, not one row per page.
+
+row_key:
+  - product_url
+
+expectations:
+  # A listing page is one-to-many: a single input URL yields a row per product.
+  min_rows: 5
+  max_row_drop_pct: 50
+
+policy:
+  heal: gated
+  max_heal_attempts: 3
+
+schema:
+  - field: product_url
+    description: >-
+      the link to this medicine's own product page, as an absolute URL
+    type: url
+    required: true
+    min_fill_rate: 1.0
+
+  - field: product_name
+    description: the brand name of the medicine as printed on the listing card
+    type: string
+    required: true
+    validate:
+      min_length: 3
+
+  - field: selling_price
+    description: >-
+      the price in rupees shown on the listing card, after any discount
+    type: number
+    required: true
+    unit: INR
+    validate:
+      gt: 0
+      lt: 100000
+    drift:
+      median_shift_pct: 40
+      flag_constant: true
+
+inputs:
+  # Three molecules that also appear in the PDP contracts, so Discovery output and
+  # PDP output can be compared against each other.
+  urls:
+    - https://www.truemeds.in/drug-salts/pantoprazole-72
+    - https://www.truemeds.in/drug-salts/metformin-111
+    - https://www.truemeds.in/drug-salts/rosuvastatin-267
