@@ -29,7 +29,11 @@ export interface EngineEvent {
     | 'report_ready'
     | 'incident_opened'
     | 'incident_resolved'
-    | 'source_finished';
+    | 'source_finished'
+    | 'heal_requested'
+    | 'preview_verified'
+    | 'preview_rejected'
+    | 'escalated';
   readonly sourceId: string;
   readonly message: string;
 }

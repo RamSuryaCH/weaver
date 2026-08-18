@@ -11,6 +11,7 @@ import { loadDotEnv } from '@weaver/config';
 import { CHAOS_MUTATIONS, describeMutation, type ChaosMutation } from '@weaver/core';
 import { runCheck, runCollect } from './commands/collect.js';
 import { runDoctor } from './commands/doctor.js';
+import { runHeal } from './commands/heal.js';
 import { style } from './ui.js';
 
 loadDotEnv();
@@ -65,6 +66,26 @@ program
       fixturesDir: globals().fixturesDir,
       ...(typeof options.source === 'string' ? { source: options.source } : {}),
       ...(options.explain === true ? { explain: true } : {}),
+    });
+  });
+
+program
+  .command('heal')
+  .description('diagnose the latest run, repair the collector, and verify the fix')
+  .option('-s, --source <id>', 'source id from sources/')
+  .option('-a, --all', 'every source')
+  .option('-d, --dry-run', 'print the prompt Weaver would send and stop')
+  .option('-n, --attempts <n>', 'override the contract heal budget', parsePositiveInteger)
+  .option('--no-verify', 'skip the post-approval re-collection')
+  .action(async (options: Record<string, unknown>) => {
+    process.exitCode = await runHeal({
+      sourcesDir: globals().sourcesDir,
+      fixturesDir: globals().fixturesDir,
+      ...(typeof options.source === 'string' ? { source: options.source } : {}),
+      ...(options.all === true ? { all: true } : {}),
+      ...(options.dryRun === true ? { dryRun: true } : {}),
+      ...(typeof options.attempts === 'number' ? { attempts: options.attempts } : {}),
+      ...(options.verify === false ? { noVerify: true } : {}),
     });
   });
 

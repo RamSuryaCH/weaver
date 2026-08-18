@@ -62,3 +62,14 @@ export {
   type ChaosMutation,
   type ChaosOptions,
 } from './chaos.js';
+
+export {
+  chooseStrategy,
+  NothingToHealError,
+  synthesizeHealPrompt,
+  type HealPrompt,
+  type HealPromptInput,
+  type HealStrategy,
+} from './heal-prompt.js';
+
+export { describeVerdict, verifyPreview, type PreviewVerdict } from './preview.js';
