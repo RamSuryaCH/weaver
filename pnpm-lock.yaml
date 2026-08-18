@@ -38,12 +38,21 @@ importers:
 
   apps/cli:
     dependencies:
+      '@weaver/brightdata':
+        specifier: workspace:*
+        version: link:../../packages/brightdata
       '@weaver/config':
         specifier: workspace:*
         version: link:../../packages/config
       '@weaver/core':
         specifier: workspace:*
         version: link:../../packages/core
+      '@weaver/db':
+        specifier: workspace:*
+        version: link:../../packages/db
+      '@weaver/engine':
+        specifier: workspace:*
+        version: link:../../packages/engine
       commander:
         specifier: 14.0.1
         version: 14.0.1
@@ -90,6 +99,18 @@ importers:
       drizzle-kit:
         specifier: 0.31.5
         version: 0.31.5
+
+  packages/engine:
+    dependencies:
+      '@weaver/brightdata':
+        specifier: workspace:*
+        version: link:../brightdata
+      '@weaver/core':
+        specifier: workspace:*
+        version: link:../core
+      '@weaver/db':
+        specifier: workspace:*
+        version: link:../db
 
 packages:
 

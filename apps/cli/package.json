@@ -11,8 +11,11 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@weaver/brightdata": "workspace:*",
     "@weaver/config": "workspace:*",
     "@weaver/core": "workspace:*",
+    "@weaver/db": "workspace:*",
+    "@weaver/engine": "workspace:*",
     "commander": "14.0.1"
   }
 }
