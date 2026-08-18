@@ -26,6 +26,32 @@ the same before and after every repair in this repo.
 | Dawaa Dost      | `c_msz4k0rsm4wpfezt3`  | `sources/dawaadost.yaml`       |
 | Apollo Pharmacy | `c_msz4k329ghj4p6o3y`  | `sources/apollo-pharmacy.yaml` |
 
+## Scraper types
+
+Three of Scraper Studio's five types, all against the same three sites, all added
+as YAML contracts with no code changes — which is the point: the contract engine is
+type-agnostic because every type returns rows, and rows are judged identically.
+
+| Type          | Collector                                                            | What it does                                            |
+| ------------- | -------------------------------------------------------------------- | ------------------------------------------------------- |
+| **PDP** ×3    | `c_msz4j3yo230n7kzhbe`, `c_msz4k0rsm4wpfezt3`, `c_msz4k329ghj4p6o3y` | one product page → one priced row                       |
+| **Discovery** | `c_msz6cw2l2bmrq68lqf`                                               | a drug-salt listing page → every brand of that molecule |
+| **Sitemap**   | `sources/dawaadost-sitemap.yaml`                                     | the published sitemap → product URLs, no crawling       |
+
+Discovery is what makes the pipeline self-feeding:
+`/drug-salts/pantoprazole-72` lists every pantoprazole brand Truemeds stocks, so
+Discovery finds the products and the PDP collectors price them, with nobody
+maintaining a URL list by hand.
+
+**Search was deliberately not built, and this is the interesting one.** Truemeds
+disallows `/search` in robots.txt and Apollo disallows `/search/` and
+`/medicine/search-medicines/`. Dawaa Dost permits it, but its search results are
+rendered client-side — the HTML contains zero product links. So the options were to
+violate a robots.txt directive or to ship a collector that returns nothing. Neither
+is worth a checkbox, and the contract engine already accepts `type: search` with
+`inputs.keywords`, so adding one against a permitting site is a config change
+rather than a code change.
+
 ## The grand-prize criterion, part by part
 
 > "the scraper you designed in Scraper Studio, how you drove it from your coding
@@ -128,13 +154,28 @@ pnpm vitest run packages/engine/src/heal.test.ts
 
 ## Honest limitations
 
-- **Pack size is inferred, not read.** Until the heal that adds a `pack_size`
-  field lands on all three collectors, pack size is parsed from the product name.
-  The dashboard marks inferred values with a `?` rather than presenting a guess as
-  a fact.
+- **Search is not implemented**, deliberately. See the scraper-types section above:
+  two of three sites disallow search paths in robots.txt, and the third renders
+  results client-side.
+- **Generation timed out once, and left a half-built collector.** Pointing
+  `bdata scraper create` at an 8 MB sitemap with 20,000 URLs hung Scraper Studio's
+  schema generator past the CLI's 600-second ceiling. `c_msz6cyqz8au5eg07j` is that
+  dead collector; Bright Data exposes no programmatic deletion, so it is noted here
+  rather than quietly removed. A 684 KB sitemap generates fine.
+- **Pack size is inferred, not read.** Until a heal adds a `pack_size` field to all
+  three collectors, pack size is parsed from the product name. The dashboard marks
+  inferred values with a `?` rather than presenting a guess as a fact.
 - **Apollo Pharmacy's collector is the weakest of the three.** Its product pages
-  render more of the content client-side, and the generated scraper reflects that.
-  Its incident is real and open.
+  render more content client-side, and the generated scraper reflects that. Its
+  incident is real and open.
+- **One heal was approved and then failed verification.** Dawaa Dost's
+  `composition` fix satisfied the contract on a one-row preview, was approved, and
+  still returned 2 of 15 on the real re-run. Weaver escalated rather than declaring
+  success. That is the system working, and it is also an open problem.
+- **A cross-field invariant is missing.** Truemeds returned a `selling_price` of
+  ₹7,531.25 against an MRP of ₹93.75 — eighty times the printed price, and it passed
+  every rule, because `lt: 100000` is a range check and nothing expresses
+  `selling_price <= mrp`. The contract language needs cross-field rules.
 - **The baseline needs three healthy runs** before drift comparisons switch on.
   Contract checks apply from the first run, so a new source is never unguarded, but
   "drifted from normal" needs a normal to exist first.

@@ -5,8 +5,12 @@
 # instead of crawling category pages.
 #
 # Dawaa Dost publishes eleven sitemaps covering roughly 181,000 product URLs.
-# This contract reads one of them, which is enough to prove the type works and to
-# keep the credit cost of a run measured in cents.
+# This contract reads the smallest of them: 1,680 URLs in 684 KB.
+#
+# Size turned out to matter. The first attempt pointed at sitemap2.xml, which is
+# 8 MB and roughly 20,000 URLs, and Scraper Studio's schema generator never
+# finished — the CLI gave up after its 600-second ceiling and left a half-built
+# collector behind. A smaller file generates without trouble.
 #
 # Legality: sitemaps exist to be read by machines and are advertised in
 # robots.txt, which for dawaadost.com is `allow: /` apart from cgi-bin, temp and
@@ -15,7 +19,7 @@ id: dawaadost-sitemap
 name: Dawaa Dost (sitemap)
 type: sitemap
 target_url: https://www.dawaadost.com
-collector_id: c_msz6cyqz8au5eg07j
+collector_id: null
 
 description: >-
   This is an XML sitemap. For each <url> entry that points at a medicine product
@@ -53,4 +57,4 @@ schema:
 
 inputs:
   sitemaps:
-    - https://www.dawaadost.com/sitemap2.xml
+    - https://www.dawaadost.com/sitemap10.xml

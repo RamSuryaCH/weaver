@@ -13,10 +13,18 @@ It runs on a live medicine price transparency pipeline across three Indian onlin
 pharmacies, where wrong data has consequences.
 
 ```
-Truemeds        c_msz4j3yo230n7kzhbe
-Dawaa Dost      c_msz4k0rsm4wpfezt3
-Apollo Pharmacy c_msz4k329ghj4p6o3y
+Truemeds        c_msz4j3yo230n7kzhbe   PDP
+Dawaa Dost      c_msz4k0rsm4wpfezt3    PDP
+Apollo Pharmacy c_msz4k329ghj4p6o3y    PDP
+Truemeds        c_msz6cw2l2bmrq68lqf   Discovery — every brand of one molecule
+Dawaa Dost      sources/dawaadost-sitemap.yaml   Sitemap — the published sitemap
 ```
+
+Three of Scraper Studio's five scraper types, all added as YAML contracts with no
+code changes. Search is deliberately absent: two of the three sites disallow search
+paths in robots.txt and the third renders results client-side, so building one would
+have meant either ignoring a directive or shipping a collector that returns nothing.
+`docs/targets.md` has the evidence.
 
 ## What happened on the first live run
 

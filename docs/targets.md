@@ -83,3 +83,33 @@ normalises to price per unit. See `docs/adr/`.
 Two of the shared medicines, Pan 40 and Pantop 40, are both pantoprazole 40 mg
 from different manufacturers. That is the brand-versus-brand comparison the
 product is built to expose.
+
+## Scraper types, and why Search is absent
+
+Three of Scraper Studio's five types are in use: PDP on all three pharmacies,
+Discovery on Truemeds drug-salt listing pages, and Sitemap on Dawaa Dost's
+published sitemap.
+
+**Discovery** targets `/drug-salts/<molecule>` pages, which list every brand of one
+molecule and are server-rendered (verified: 8 product links in the raw HTML). They
+are ordinary content pages and are not among the paths Truemeds disallows.
+
+**Sitemap** targets `sitemap10.xml`, the smallest of Dawaa Dost's eleven sitemaps at
+684 KB and 1,680 URLs. Sitemaps exist to be read by machines and are advertised in
+robots.txt. An earlier attempt against the 8 MB `sitemap2.xml` (about 20,000 URLs)
+hung Scraper Studio's schema generator past the CLI's 600-second ceiling, so size
+turns out to matter for AI generation.
+
+**Search is deliberately not implemented.** Checking each site:
+
+- `truemeds.in` — `Disallow: /search`
+- `apollopharmacy.in` — `Disallow: /search/` and `Disallow: /medicine/search-medicines/`
+- `dawaadost.com` — permits `/search`, and returns HTTP 200, but the results are
+  rendered client-side: the raw HTML for `/search?q=pantoprazole` contains zero
+  `/medicine/` links.
+
+So a Search collector here would mean either ignoring a robots.txt directive on two
+sites, or shipping a collector that reliably returns nothing on the third. The
+contract engine already accepts `type: search` with `inputs.keywords`, so adding one
+against a site that permits and server-renders search is a config change rather than
+a code change.
