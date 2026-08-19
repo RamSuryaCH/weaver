@@ -1,0 +1,129 @@
+{
+  "sourceId": "apollo-pharmacy",
+  "collectorId": "c_msz4k329ghj4p6o3y",
+  "collectedAt": "2026-08-19T07:10:40.603Z",
+  "rows": [
+    {
+      "product_url": "https://www.apollopharmacy.in/medicine/combiflam-tablet",
+      "currency": "INR",
+      "input": {
+        "url": "https://www.apollopharmacy.in/medicine/combiflam-tablet"
+      }
+    },
+    {
+      "product_url": "https://www.apollopharmacy.in/medicine/cetzine-10mg-tablet",
+      "product_name": "Cetzine Tablet",
+      "currency": "INR",
+      "in_stock": true,
+      "input": {
+        "url": "https://www.apollopharmacy.in/medicine/cetzine-10mg-tablet"
+      }
+    },
+    {
+      "product_url": "https://www.apollopharmacy.in/medicine/met-xl-25mg-er-tablet-20-s",
+      "product_name": "Met XL 25 Tablet",
+      "currency": "INR",
+      "input": {
+        "url": "https://www.apollopharmacy.in/medicine/met-xl-25mg-er-tablet-20-s"
+      }
+    },
+    {
+      "product_url": "https://www.apollopharmacy.in/medicine/omez-20mg-capsule",
+      "product_name": "Omez Capsule",
+      "currency": "INR",
+      "in_stock": true,
+      "input": {
+        "url": "https://www.apollopharmacy.in/medicine/omez-20mg-capsule"
+      }
+    },
+    {
+      "product_url": "https://www.apollopharmacy.in/medicine/pan-40mg-tablet",
+      "currency": "INR",
+      "input": {
+        "url": "https://www.apollopharmacy.in/medicine/pan-40mg-tablet"
+      }
+    },
+    {
+      "product_url": "https://www.apollopharmacy.in/medicine/thyronorm-25mcg-tablet",
+      "currency": "INR",
+      "input": {
+        "url": "https://www.apollopharmacy.in/medicine/thyronorm-25mcg-tablet"
+      }
+    },
+    {
+      "product_url": "https://www.apollopharmacy.in/medicine/augmentin-375mg-tablet",
+      "currency": "INR",
+      "input": {
+        "url": "https://www.apollopharmacy.in/medicine/augmentin-375mg-tablet"
+      }
+    },
+    {
+      "product_url": "https://www.apollopharmacy.in/medicine/pantop-40mg-tablet",
+      "currency": "INR",
+      "input": {
+        "url": "https://www.apollopharmacy.in/medicine/pantop-40mg-tablet"
+      }
+    },
+    {
+      "product_url": "https://www.apollopharmacy.in/medicine/glycomet-500mg-tablet",
+      "product_name": "Glycomet 500 Tablet",
+      "composition": "METFORMIN-500MG",
+      "mrp": 19.5,
+      "selling_price": 19.5,
+      "currency": "INR",
+      "discount_pct": 15,
+      "input": {
+        "url": "https://www.apollopharmacy.in/medicine/glycomet-500mg-tablet"
+      }
+    },
+    {
+      "product_url": "https://www.apollopharmacy.in/medicine/rosuvas-10mg-tablet",
+      "currency": "INR",
+      "input": {
+        "url": "https://www.apollopharmacy.in/medicine/rosuvas-10mg-tablet"
+      }
+    },
+    {
+      "product_url": "https://www.apollopharmacy.in/medicine/zerodol-sp-tablet",
+      "product_name": "Zerodol-SP Tablet",
+      "composition": "ACECLOFENAC-100MG+PARACETAMOL-325MG+SERRATIOPEPTIDASE-15MG",
+      "mrp": 139.5,
+      "selling_price": 139.5,
+      "currency": "INR",
+      "discount_pct": 15,
+      "input": {
+        "url": "https://www.apollopharmacy.in/medicine/zerodol-sp-tablet"
+      }
+    },
+    {
+      "product_url": "https://www.apollopharmacy.in/medicine/sinarest-tablet",
+      "product_name": "Sinarest New Tablet",
+      "currency": "INR",
+      "in_stock": true,
+      "input": {
+        "url": "https://www.apollopharmacy.in/medicine/sinarest-tablet"
+      }
+    },
+    {
+      "product_url": "https://www.apollopharmacy.in/medicine/ecosprin-150mg-tablet",
+      "currency": "INR",
+      "input": {
+        "url": "https://www.apollopharmacy.in/medicine/ecosprin-150mg-tablet"
+      }
+    },
+    {
+      "product_url": "https://www.apollopharmacy.in/medicine/allegra-120mg-tablet",
+      "currency": "INR",
+      "input": {
+        "url": "https://www.apollopharmacy.in/medicine/allegra-120mg-tablet"
+      }
+    },
+    {
+      "product_url": "https://www.apollopharmacy.in/medicine/montek-lc-tablet-15-s",
+      "currency": "INR",
+      "input": {
+        "url": "https://www.apollopharmacy.in/medicine/montek-lc-tablet-15-s"
+      }
+    }
+  ]
+}
