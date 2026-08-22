@@ -1,0 +1,202 @@
+{
+  "sourceId": "truemeds",
+  "collectorId": "c_msz4j3yo230n7kzhbe",
+  "collectedAt": "2026-08-22T01:54:52.801Z",
+  "rows": [
+    {
+      "product_url": "https://www.truemeds.in/medicine/zerodol-sp-tablet-tm-tacr1-044727",
+      "product_name": "Zerodol Sp Tablet 10 Aldigesic Sp Forte Tablet 10",
+      "composition": "Aceclofenac (100 Mg) + Paracetamol/acetaminophen (325 Mg) + Serratiopeptidase (15 Mg)",
+      "mrp": 139.69,
+      "selling_price": 111.7561,
+      "currency": "INR",
+      "discount_pct": 20,
+      "in_stock": false,
+      "input": {
+        "url": "https://www.truemeds.in/medicine/zerodol-sp-tablet-tm-tacr1-044727"
+      }
+    },
+    {
+      "product_url": "https://www.truemeds.in/medicine/met-xl-25-mg-tablet-15-tm-tacr1-074907",
+      "product_name": "Met Xl 25 Tablet 15 Metol Xl 25 Tablet 10",
+      "composition": "Metoprolol Succinate (25 Mg)",
+      "mrp": 93.75,
+      "selling_price": 7531.25,
+      "currency": "INR",
+      "discount_pct": 20,
+      "in_stock": false,
+      "input": {
+        "url": "https://www.truemeds.in/medicine/met-xl-25-mg-tablet-15-tm-tacr1-074907"
+      }
+    },
+    {
+      "product_url": "https://www.truemeds.in/otc/dolo-650-mg-tablet-15-tm-tacr1-011691",
+      "product_name": "Dolo 650 Tablet 15 Welset 650 Tablet 10",
+      "composition": "Paracetamol/acetaminophen (650 Mg)",
+      "mrp": 32.12,
+      "selling_price": 25.71,
+      "currency": "INR",
+      "discount_pct": 20,
+      "in_stock": false,
+      "input": {
+        "url": "https://www.truemeds.in/otc/dolo-650-mg-tablet-15-tm-tacr1-011691"
+      }
+    },
+    {
+      "product_url": "https://www.truemeds.in/medicine/crocin-650-mg-tablet-15-tm-tacr1-009893",
+      "product_name": "Crocin 650 Tablet 15 Welset 650 Tablet 10",
+      "composition": "Paracetamol/acetaminophen (650 Mg)",
+      "mrp": 32.13,
+      "selling_price": 26.671,
+      "currency": "INR",
+      "discount_pct": 17,
+      "in_stock": false,
+      "input": {
+        "url": "https://www.truemeds.in/medicine/crocin-650-mg-tablet-15-tm-tacr1-009893"
+      }
+    },
+    {
+      "product_url": "https://www.truemeds.in/medicine/allegra-120mg-tablet-10-tm-tacr1-001433",
+      "product_name": "Allegra 120mg Tablet 10 Fexren 120 Tablet 10",
+      "composition": "Fexofenadine (120 Mg)",
+      "mrp": 272.99,
+      "selling_price": 210.2109,
+      "currency": "INR",
+      "discount_pct": 23,
+      "in_stock": false,
+      "input": {
+        "url": "https://www.truemeds.in/medicine/allegra-120mg-tablet-10-tm-tacr1-001433"
+      }
+    },
+    {
+      "product_url": "https://www.truemeds.in/medicine/glycomet-500-mg-tablet-10-tm-tacr1-017949",
+      "product_name": "Glycomet Tablet 10 Okamet 500 Tablet 20",
+      "composition": "Metformin (500 Mg)",
+      "mrp": 19.59,
+      "selling_price": 15.6719,
+      "currency": "INR",
+      "discount_pct": 20,
+      "in_stock": false,
+      "input": {
+        "url": "https://www.truemeds.in/medicine/glycomet-500-mg-tablet-10-tm-tacr1-017949"
+      }
+    },
+    {
+      "product_url": "https://www.truemeds.in/medicine/ecosprin-150-mg-tablet-14-tm-tacr1-012743",
+      "product_name": "Ecosprin 150 Tablet 14",
+      "composition": "Aspirin (150 Mg)",
+      "mrp": 10.58,
+      "selling_price": 9.2,
+      "currency": "INR",
+      "discount_pct": 13,
+      "in_stock": false,
+      "input": {
+        "url": "https://www.truemeds.in/medicine/ecosprin-150-mg-tablet-14-tm-tacr1-012743"
+      }
+    },
+    {
+      "product_url": "https://www.truemeds.in/medicine/augmentin-250125-mg-tablet-6-tm-tacr1-003777",
+      "product_name": "Augmentin 250/125 Mg Tablet 6 Omniclav 375 Tablet 6",
+      "composition": "Amoxicillin (250 Mg) + Clavulanic Acid (125 Mg)",
+      "mrp": 128.77,
+      "selling_price": 103.0264,
+      "currency": "INR",
+      "discount_pct": 20,
+      "in_stock": false,
+      "input": {
+        "url": "https://www.truemeds.in/medicine/augmentin-250125-mg-tablet-6-tm-tacr1-003777"
+      }
+    },
+    {
+      "product_url": "https://www.truemeds.in/otc/shelcal-500-tablet-40-tm-tacr1-096978",
+      "product_name": "Shelcal 500 Tablet 40 Calcinux 500 Tablet 15",
+      "composition": "Elemental Calcium (500 Mg) + Vitamin D3 (Cholecalciferol) (250 Iu)",
+      "mrp": 422.93,
+      "selling_price": 338.3479,
+      "currency": "INR",
+      "discount_pct": 20,
+      "in_stock": false,
+      "input": {
+        "url": "https://www.truemeds.in/otc/shelcal-500-tablet-40-tm-tacr1-096978"
+      }
+    },
+    {
+      "product_url": "https://www.truemeds.in/medicine/thyronorm-25-mcg-tablet-120-tm-tacr1-039965",
+      "product_name": "Thyronorm 25Mcg Tablet 120 Thyzire 25 Tablet 120",
+      "composition": "Thyroxine (25 Mcg)",
+      "mrp": 186.6,
+      "selling_price": 149.2893,
+      "currency": "INR",
+      "discount_pct": 20,
+      "in_stock": false,
+      "input": {
+        "url": "https://www.truemeds.in/medicine/thyronorm-25-mcg-tablet-120-tm-tacr1-039965"
+      }
+    },
+    {
+      "product_url": "https://www.truemeds.in/medicine/montek-lc-105-mg-tablet-15-tm-tacr1-091644",
+      "product_name": "Montek Lc Tablet 15 Montecip Lc Tablet 10",
+      "composition": "Levocetirizine (5 Mg) + Montelukast (10 Mg)",
+      "mrp": 368.44,
+      "selling_price": 294.75122,
+      "currency": "INR",
+      "discount_pct": 20,
+      "in_stock": false,
+      "input": {
+        "url": "https://www.truemeds.in/medicine/montek-lc-105-mg-tablet-15-tm-tacr1-091644"
+      }
+    },
+    {
+      "product_url": "https://www.truemeds.in/medicine/pantop-40-mg-tablet-15-tm-tacr1-030358",
+      "product_name": "Pantop 40 Tablet 15 Panrux 40 Tablet 10",
+      "composition": "Pantoprazole (40 Mg)",
+      "mrp": 174.45,
+      "selling_price": 139.5658,
+      "currency": "INR",
+      "discount_pct": 20,
+      "in_stock": false,
+      "input": {
+        "url": "https://www.truemeds.in/medicine/pantop-40-mg-tablet-15-tm-tacr1-030358"
+      }
+    },
+    {
+      "product_url": "https://www.truemeds.in/medicine/pan-40-mg-tablet-10-tm-tacr1-030124",
+      "product_name": "Pan 40 Mg Tablet 10 Panrux 40 Tablet 10",
+      "composition": "Pantoprazole (40 Mg)",
+      "mrp": 72.19,
+      "selling_price": 57.7536,
+      "currency": "INR",
+      "discount_pct": 20,
+      "in_stock": false,
+      "input": {
+        "url": "https://www.truemeds.in/medicine/pan-40-mg-tablet-10-tm-tacr1-030124"
+      }
+    },
+    {
+      "product_url": "https://www.truemeds.in/otc/zincovit-capsule-10-tm-tacr1-053386",
+      "product_name": "Zincovit Capsule 10",
+      "composition": "Biotin (0.03 Mg) + Cyanocobalamin / Vitamin B12 (0.001 Mg) + Elemental Chromium (0.025 Mg) + Elemental Copper (0.03 Mg) + Elemental Manganese (0.25 Mg) + Folic Acid (0.1 Mg) + Grape Seed Extract (50 Mg) + Iodine (0.1 Mg) + Magnesium (3 Mg) + Riboflavin / Vitamin B2 (1.6 Mg) + Selenium (0.03 Mg) + Thiamine / Vitamin B1 (1.4 Mg) + Vitamin A / Retinol (0.6 Mg) + Vitamin B3 / Niacin (18 Mg) + Vitamin B5 / Pantothenic Acid (3 Mg) + Vitamin B6 / Pyridoxine (1 Mg) + Vitamin C / Ascorbic Acid (40 Mg) + Vitamin D3 (Cholecalciferol) (0.005 Mg) + Vitamin E (10 Mg) + Zinc (10 Mg) ... See more",
+      "mrp": 62.29,
+      "selling_price": 49.83,
+      "currency": "INR",
+      "discount_pct": 20,
+      "in_stock": false,
+      "input": {
+        "url": "https://www.truemeds.in/otc/zincovit-capsule-10-tm-tacr1-053386"
+      }
+    },
+    {
+      "product_url": "https://www.truemeds.in/medicine/rosuvas-10-mg-tablet-15-tm-tacr1-035086",
+      "product_name": "Rosuvas 10 Tablet 15 Rosuren 10 Tablet 10",
+      "composition": "Rosuvastatin (10 Mg)",
+      "mrp": 375,
+      "selling_price": 300107.5,
+      "currency": "INR",
+      "discount_pct": 20,
+      "in_stock": false,
+      "input": {
+        "url": "https://www.truemeds.in/medicine/rosuvas-10-mg-tablet-15-tm-tacr1-035086"
+      }
+    }
+  ]
+}
