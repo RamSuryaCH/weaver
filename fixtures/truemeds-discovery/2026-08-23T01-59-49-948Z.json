@@ -1,0 +1,244 @@
+{
+  "sourceId": "truemeds-discovery",
+  "collectorId": "c_msz6cw2l2bmrq68lqf",
+  "collectedAt": "2026-08-23T01:59:49.948Z",
+  "rows": [
+    {
+      "products": [
+        {
+          "product_url": "https://www.truemeds.in/medicine/fortius-10-mg-tablet-10-tm-tacr1-063702",
+          "product_name": "Fortius 10 Tablet 10",
+          "selling_price": {
+            "value": 34.99,
+            "currency": "INR",
+            "symbol": "₹"
+          }
+        },
+        {
+          "product_url": "https://www.truemeds.in/medicine/rosuvas-5-mg-tablet-15-tm-tacr1-035090",
+          "product_name": "Rosuvas 5 Tablet 15",
+          "selling_price": {
+            "value": 172,
+            "currency": "INR",
+            "symbol": "₹"
+          }
+        },
+        {
+          "product_url": "https://www.truemeds.in/medicine/roseday-10-mg-tablet-15-TM-TACR1-053368",
+          "product_name": "Roseday 10 Tablet 15",
+          "selling_price": {
+            "value": 186.4,
+            "currency": "INR",
+            "symbol": "₹"
+          }
+        },
+        {
+          "product_url": "https://www.truemeds.in/medicine/roseday-5-mg-tablet-15-tm-tacr1-053800",
+          "product_name": "Roseday 5 Tablet 15",
+          "selling_price": {
+            "value": 108.56,
+            "currency": "INR",
+            "symbol": "₹"
+          }
+        },
+        {
+          "product_url": "https://www.truemeds.in/medicine/rosubest-10-mg-tablet-10-tm-tacr1-034933",
+          "product_name": "Rosubest 10 Tablet 10",
+          "selling_price": {
+            "value": 65.66,
+            "currency": "INR",
+            "symbol": "₹"
+          }
+        },
+        {
+          "product_url": "https://www.truemeds.in/medicine/rosuvas-20-mg-tablet-10-tm-tacr1-035087",
+          "product_name": "Rosuvas 20 Tablet 10",
+          "selling_price": {
+            "value": 384,
+            "currency": "INR",
+            "symbol": "₹"
+          }
+        },
+        {
+          "product_url": "https://www.truemeds.in/medicine/rosubest-20-mg-tablet-10-tm-tacr1-034934",
+          "product_name": "Rosubest 20 Tablet 10",
+          "selling_price": {
+            "value": 119.36,
+            "currency": "INR",
+            "symbol": "₹"
+          }
+        },
+        {
+          "product_url": "https://www.truemeds.in/medicine/rosuvas-10-mg-tablet-15-tm-tacr1-035086",
+          "product_name": "Rosuvas 10 Tablet 15",
+          "selling_price": {
+            "value": 300,
+            "currency": "INR",
+            "symbol": "₹"
+          }
+        }
+      ],
+      "input": {
+        "url": "https://www.truemeds.in/drug-salts/rosuvastatin-267"
+      }
+    },
+    {
+      "products": [
+        {
+          "product_url": "https://www.truemeds.in/medicine/glycomet-500-mg-tablet-10-tm-tacr1-017949",
+          "product_name": "Glycomet Tablet 10",
+          "selling_price": {
+            "value": 15.67,
+            "currency": "INR",
+            "symbol": "₹"
+          }
+        },
+        {
+          "product_url": "https://www.truemeds.in/medicine/glycomet-500-mg-tablet-sr-20-TM-TASR1-000446",
+          "product_name": "Glycomet 500 Sr Tablet 20",
+          "selling_price": {
+            "value": 33.79,
+            "currency": "INR",
+            "symbol": "₹"
+          }
+        },
+        {
+          "product_url": "https://www.truemeds.in/medicine/glyciphage-500-mg-tablet-sr-10-tm-tasr1-000439",
+          "product_name": "Glyciphage Sr 500Mg Tablet 10",
+          "selling_price": {
+            "value": 21.3,
+            "currency": "INR",
+            "symbol": "₹"
+          }
+        },
+        {
+          "product_url": "https://www.truemeds.in/medicine/gluconorm-500-mg-tablet-sr-15-tm-tasr1-000404",
+          "product_name": "Gluconorm Sr 500 Tablet 15",
+          "selling_price": {
+            "value": 25.96,
+            "currency": "INR",
+            "symbol": "₹"
+          }
+        },
+        {
+          "product_url": "https://www.truemeds.in/medicine/glycomet-1-gm-tablet-15-tm-tasr1-000445",
+          "product_name": "Glycomet 1Gm Tablet 15",
+          "selling_price": {
+            "value": 50.77,
+            "currency": "INR",
+            "symbol": "₹"
+          }
+        },
+        {
+          "product_url": "https://www.truemeds.in/medicine/glyciphage-1-gm-tablet-sr-10-tm-tasr1-000438",
+          "product_name": "Glyciphage Sr 1Gm Tablet 10",
+          "selling_price": {
+            "value": 34.46,
+            "currency": "INR",
+            "symbol": "₹"
+          }
+        },
+        {
+          "product_url": "https://www.truemeds.in/medicine/glyciphage-500-mg-tablet-20-tm-tacr1-017930",
+          "product_name": "Glyciphage Tablet 20",
+          "selling_price": {
+            "value": 31.76,
+            "currency": "INR",
+            "symbol": "₹"
+          }
+        },
+        {
+          "product_url": "https://www.truemeds.in/medicine/okamet-500-mg-tablet-20-tm-tacr1-028378",
+          "product_name": "Okamet 500 Tablet 20",
+          "selling_price": {
+            "value": 13.16,
+            "currency": "INR",
+            "symbol": "₹"
+          }
+        }
+      ],
+      "input": {
+        "url": "https://www.truemeds.in/drug-salts/metformin-111"
+      }
+    },
+    {
+      "products": [
+        {
+          "product_url": "https://www.truemeds.in/medicine/pantop-40-mg-tablet-15-tm-tacr1-030358",
+          "product_name": "Pantop 40 Tablet 15",
+          "selling_price": {
+            "value": 139.56,
+            "currency": "INR",
+            "symbol": "₹"
+          }
+        },
+        {
+          "product_url": "https://www.truemeds.in/medicine/pantosec-40-mg-tablet-10-TM-TACR1-030376",
+          "product_name": "Pantosec Tablet 10",
+          "selling_price": {
+            "value": 48.85,
+            "currency": "INR",
+            "symbol": "₹"
+          }
+        },
+        {
+          "product_url": "https://www.truemeds.in/medicine/panrux-40-tablet-10-tm-tacr1-106870",
+          "product_name": "Panrux 40 Tablet 10",
+          "selling_price": {
+            "value": 51.55,
+            "currency": "INR",
+            "symbol": "₹"
+          }
+        },
+        {
+          "product_url": "https://www.truemeds.in/medicine/pantodac-40-mg-tablet-15-tm-tacr1-030325",
+          "product_name": "Pantodac 40 Tablet 15",
+          "selling_price": {
+            "value": 188.93,
+            "currency": "INR",
+            "symbol": "₹"
+          }
+        },
+        {
+          "product_url": "https://www.truemeds.in/medicine/pan-40-mg-tablet-15-TM-TACR1-030125",
+          "product_name": "Pan 40 Tablet 15",
+          "selling_price": {
+            "value": 154.24,
+            "currency": "INR",
+            "symbol": "₹"
+          }
+        },
+        {
+          "product_url": "https://www.truemeds.in/medicine/pantakind-40-mg-tablet-15-tm-tacr1-030257",
+          "product_name": "Pantakind Tablet 15",
+          "selling_price": {
+            "value": 69.9,
+            "currency": "INR",
+            "symbol": "₹"
+          }
+        },
+        {
+          "product_url": "https://www.truemeds.in/medicine/topp-40-mg-tablet-10-tm-tacr1-040464",
+          "product_name": "Topp 40 Tablet 10",
+          "selling_price": {
+            "value": 23.34,
+            "currency": "INR",
+            "symbol": "₹"
+          }
+        },
+        {
+          "product_url": "https://www.truemeds.in/medicine/pantocid-40-mg-tablet-15-tm-tacr1-030316",
+          "product_name": "Pantocid 40 Tablet 15",
+          "selling_price": {
+            "value": 156.75,
+            "currency": "INR",
+            "symbol": "₹"
+          }
+        }
+      ],
+      "input": {
+        "url": "https://www.truemeds.in/drug-salts/pantoprazole-72"
+      }
+    }
+  ]
+}
