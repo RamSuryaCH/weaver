@@ -1,0 +1,187 @@
+{
+  "sourceId": "dawaadost",
+  "collectorId": "c_msz4k0rsm4wpfezt3",
+  "collectedAt": "2026-08-26T07:08:20.136Z",
+  "rows": [
+    {
+      "product_url": "https://www.dawaadost.com/medicine/montek-lc-10mg5mg-tablet-15s",
+      "product_name": "Montek LC 10mg/5mg Tablet 15s",
+      "mrp": 393,
+      "selling_price": 335,
+      "currency": "INR",
+      "discount_pct": 15,
+      "in_stock": true,
+      "input": {
+        "url": "https://www.dawaadost.com/medicine/montek-lc-10mg5mg-tablet-15s"
+      }
+    },
+    {
+      "product_url": "https://www.dawaadost.com/medicine/augmentin-625-duo-tablet-10s",
+      "product_name": "Augmentin 625 Duo Tablet 10s",
+      "mrp": 197,
+      "selling_price": 168,
+      "currency": "INR",
+      "discount_pct": 15,
+      "in_stock": true,
+      "input": {
+        "url": "https://www.dawaadost.com/medicine/augmentin-625-duo-tablet-10s"
+      }
+    },
+    {
+      "product_url": "https://www.dawaadost.com/medicine/met-xl-25mg-tablet-er-20s",
+      "product_name": "Met XL 25mg Tablet ER 20s",
+      "mrp": 92,
+      "selling_price": 79,
+      "currency": "INR",
+      "discount_pct": 15,
+      "in_stock": true,
+      "input": {
+        "url": "https://www.dawaadost.com/medicine/met-xl-25mg-tablet-er-20s"
+      }
+    },
+    {
+      "product_url": "https://www.dawaadost.com/medicine/ecosprin-150mg-tablet-14s",
+      "product_name": "Ecosprin 150mg Tablet 14s",
+      "mrp": 11,
+      "selling_price": 10,
+      "currency": "INR",
+      "discount_pct": 10,
+      "in_stock": true,
+      "input": {
+        "url": "https://www.dawaadost.com/medicine/ecosprin-150mg-tablet-14s"
+      }
+    },
+    {
+      "product_url": "https://www.dawaadost.com/medicine/glycomet-500mg-tablet-10s",
+      "product_name": "Glycomet 500mg Tablet 10s",
+      "mrp": 20,
+      "selling_price": 17,
+      "currency": "INR",
+      "discount_pct": 15,
+      "in_stock": true,
+      "input": {
+        "url": "https://www.dawaadost.com/medicine/glycomet-500mg-tablet-10s"
+      }
+    },
+    {
+      "product_url": "https://www.dawaadost.com/medicine/thyronorm-25mcg-tablet-120s",
+      "product_name": "Thyronorm 25mcg Tablet 120s",
+      "mrp": 187,
+      "selling_price": 159,
+      "currency": "INR",
+      "discount_pct": 15,
+      "in_stock": true,
+      "input": {
+        "url": "https://www.dawaadost.com/medicine/thyronorm-25mcg-tablet-120s"
+      }
+    },
+    {
+      "product_url": "https://www.dawaadost.com/medicine/shelcal-500-tablet-15s",
+      "product_name": "Shelcal 500 Tablet 15s",
+      "mrp": 164,
+      "selling_price": 140,
+      "currency": "INR",
+      "discount_pct": 15,
+      "in_stock": true,
+      "input": {
+        "url": "https://www.dawaadost.com/medicine/shelcal-500-tablet-15s"
+      }
+    },
+    {
+      "product_url": "https://www.dawaadost.com/medicine/allegra-120mg-tablet-10s",
+      "product_name": "Allegra 120mg Tablet 10s",
+      "mrp": 273,
+      "selling_price": 233,
+      "currency": "INR",
+      "discount_pct": 15,
+      "in_stock": true,
+      "input": {
+        "url": "https://www.dawaadost.com/medicine/allegra-120mg-tablet-10s"
+      }
+    },
+    {
+      "product_url": "https://www.dawaadost.com/medicine/crocin-650-tablet-15s",
+      "product_name": "Crocin 650 Tablet 15s",
+      "mrp": 33,
+      "selling_price": 14,
+      "currency": "INR",
+      "discount_pct": 58,
+      "in_stock": true,
+      "input": {
+        "url": "https://www.dawaadost.com/medicine/crocin-650-tablet-15s"
+      }
+    },
+    {
+      "product_url": "https://www.dawaadost.com/medicine/rosuvas-10mg-tablet-15s",
+      "product_name": "Rosuvas 10mg Tablet 15s",
+      "mrp": 375,
+      "selling_price": 300,
+      "currency": "INR",
+      "discount_pct": 20,
+      "in_stock": true,
+      "input": {
+        "url": "https://www.dawaadost.com/medicine/rosuvas-10mg-tablet-15s"
+      }
+    },
+    {
+      "product_url": "https://www.dawaadost.com/medicine/pan-40mg-tablet-15s",
+      "product_name": "Pan 40mg Tablet 15s",
+      "composition": "Active Ingredients : Pantoprazole",
+      "mrp": 193,
+      "selling_price": 155,
+      "currency": "INR",
+      "discount_pct": 20,
+      "in_stock": true,
+      "input": {
+        "url": "https://www.dawaadost.com/medicine/pan-40mg-tablet-15s"
+      }
+    },
+    {
+      "product_url": "https://www.dawaadost.com/medicine/pantop-40mg-tablet-15s",
+      "product_name": "Pantop 40mg Tablet 15s",
+      "mrp": 175,
+      "selling_price": 149,
+      "currency": "INR",
+      "discount_pct": 15,
+      "in_stock": true,
+      "input": {
+        "url": "https://www.dawaadost.com/medicine/pantop-40mg-tablet-15s"
+      }
+    },
+    {
+      "product_url": "https://www.dawaadost.com/medicine/dolo-650mg-tablet-15s",
+      "product_name": "Dolo 650mg Tablet 15s",
+      "mrp": 33,
+      "currency": "INR",
+      "in_stock": false,
+      "input": {
+        "url": "https://www.dawaadost.com/medicine/dolo-650mg-tablet-15s"
+      }
+    },
+    {
+      "product_url": "https://www.dawaadost.com/medicine/zerodol-sp-tablet-10s",
+      "product_name": "Zerodol SP Tablet 10s",
+      "composition": "Active Ingredients : Aceclofenac, Paracetamol, Serratiopeptidase",
+      "mrp": 140,
+      "selling_price": 119,
+      "currency": "INR",
+      "discount_pct": 15,
+      "in_stock": true,
+      "input": {
+        "url": "https://www.dawaadost.com/medicine/zerodol-sp-tablet-10s"
+      }
+    },
+    {
+      "product_url": "https://www.dawaadost.com/medicine/zincovit-tablet-15s",
+      "product_name": "Zincovit Tablet 15s",
+      "mrp": 108,
+      "selling_price": 92,
+      "currency": "INR",
+      "discount_pct": 15,
+      "in_stock": true,
+      "input": {
+        "url": "https://www.dawaadost.com/medicine/zincovit-tablet-15s"
+      }
+    }
+  ]
+}
